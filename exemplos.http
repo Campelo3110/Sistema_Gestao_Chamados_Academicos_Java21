@@ -1,0 +1,53 @@
+@base = http://localhost:8080
+@id = 4
+
+### Acesso didático. Use o cookie JSESSIONID nas chamadas seguintes.
+POST {{base}}/login
+Content-Type: application/x-www-form-urlencoded
+
+usuario=admin&senha=admin123
+
+### Listar
+GET {{base}}/api/chamados
+
+### Cadastrar 
+POST {{base}}/api/chamados
+Content-Type: application/json
+
+{
+  "titulo": "Declaração de matrícula",
+  "descricao": "Solicitação de declaração para estágio.",
+  "categoria": "Documentos"
+}
+
+### Consultar
+GET {{base}}/api/chamados/{{id}}
+
+### Editar
+PUT {{base}}/api/chamados/{{id}}
+Content-Type: application/json
+
+{
+  "titulo": "Declaração de matrícula atualizada",
+  "descricao": "Enviar a declaração no formato PDF.",
+  "categoria": "Documentos",
+  "prioridade": "ALTA"
+}
+
+### Atualizar status
+PUT {{base}}/api/chamados/{{id}}/status
+Content-Type: application/json
+
+{
+  "status": "CONCLUIDO",
+  "observacaoAtendimento": "Declaração emitida."
+}
+
+### Consultar o relatório filtrado em CSV
+GET {{base}}/relatorios/exportar/csv?status=CONCLUIDO&categoria=Documentos
+
+### Excluir
+DELETE {{base}}/api/chamados/{{id}}
+
+### Confirmar o 404
+GET {{base}}/api/chamados/{{id}}
