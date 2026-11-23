@@ -121,12 +121,6 @@ public class ChamadoService {
         return chamadoRepository.save(salvo);
     }
 
-    /*
-     * GABARITO DA ATIVIDADE:
-     *
-     * Atualiza apenas status e observação de atendimento.
-     * O DTO protege os demais campos da Entity.
-     */
     public Chamado atualizarStatus(ChamadoAtualizacaoStatusDTO dto) {
 
         Chamado chamado = chamadoRepository.findById(dto.getId()).orElse(null);
